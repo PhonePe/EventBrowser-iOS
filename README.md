@@ -1,3 +1,6 @@
+[![Swift 5.9](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
+[![CocoaPods](https://img.shields.io/cocoapods/v/EventBrowser.svg)](https://github.com/PhonePe/EventBrowser-iOS)
+
 # Event Browser(iOS) SDK For Enhanced Event Tracking During App Development
  
 It is a time-consuming process to track and analyze events in real-time by engineers, QA, product during app development and testing. This is where **EventBrowser** comes for rescue. Events can be ingested into EventBrowser SDK for real-time view of the events. Recorded events will persist for a duration which you can configure and can be further used to analyze Event data in detail. We can search through the logged events easily by EventType and category from the list of triggered events. You can filter by category using which we can focus on the relevant events only.
