@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version         = '1.0.0'
   s.license         = { :type => "MIT", :file => "LICENSE" }
   s.summary         = 'Event Browser'
-  s.homepage        = 'https://github.com/PhonePe/EventBrowser'
+  s.homepage        = 'https://github.com/PhonePe/EventBrowser-iOS'
   s.author          = { 'Srikanth KV' => 'srikanth.gundaz@gmail.com' }
   s.source          = { :git => 'https://github.com/PhonePe/EventBrowser-iOS.git', :tag => s.version.to_s }
 
