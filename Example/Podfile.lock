@@ -1,0 +1,18 @@
+PODS:
+  - EventBrowser/Core (1.0.0)
+  - EventBrowser/EventBrowserUI (1.0.0):
+    - EventBrowser/Core
+
+DEPENDENCIES:
+  - EventBrowser/EventBrowserUI (from `../EventBrowser.podspec`)
+
+EXTERNAL SOURCES:
+  EventBrowser:
+    :path: "../EventBrowser.podspec"
+
+SPEC CHECKSUMS:
+  EventBrowser: 7ce698c405fcecf0a340069be2d9434fcbef9431
+
+PODFILE CHECKSUM: 79c1404f7c4e5b6bfa4c4aa870e8b2c715288eff
+
+COCOAPODS: 1.15.2
