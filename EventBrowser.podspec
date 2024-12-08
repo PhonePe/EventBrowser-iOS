@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary         = 'Event Browser'
   s.homepage        = 'https://github.com/PhonePe/EventBrowser'
   s.author          = { 'Srikanth KV' => 'srikanth.gundaz@gmail.com' }
-  s.source          = { :git => 'https://github.com/PhonePe/EventBrowser.git', :tag => s.version.to_s }
+  s.source          = { :git => 'https://github.com/PhonePe/EventBrowser-iOS.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '17.0'
   
