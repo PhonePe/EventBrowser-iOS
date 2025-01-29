@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name            = 'EventBrowser'
-  s.version         = '1.0.1'
+  s.version         = '1.0.2'
   s.license         = { :type => "MIT", :file => "LICENSE" }
   s.summary         = 'Event Browser'
   s.homepage        = 'https://github.com/PhonePe/EventBrowser-iOS'
