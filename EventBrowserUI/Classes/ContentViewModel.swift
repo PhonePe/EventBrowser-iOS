@@ -12,6 +12,7 @@ import Combine
 
 @available(iOS 17, *)
 extension EventBrowserContentView {
+    
     @Observable
     public class ViewModel {
         public var searchText: String = "" {
@@ -21,10 +22,13 @@ extension EventBrowserContentView {
         }
         
         public private(set) var events: [EventModel] = []
-        public private(set) var categories: [String] = []
+        public private(set) var categories: [EventCategory] = []
         
-        public var selectedCategories: Set<String> = Set<String>() {
+        private static let userDefaultsKey: String = "com.eventbrowser.selectedCategories"
+        public var selectedCategories: Set<EventCategory> = Set<EventCategory>() {
             didSet {
+                UserDefaults.standard.set(selectedCategories.compactMap {$0.category}, forKey: Self.userDefaultsKey)
+                
                 fetchEvents()
             }
         }
@@ -35,6 +39,10 @@ extension EventBrowserContentView {
                 self?.fetch()
             })
             .store(in: &cancellables)
+            
+            if let selCategories = UserDefaults.standard.stringArray(forKey: Self.userDefaultsKey) {
+                selectedCategories = Set(selCategories.compactMap {EventCategory(category: $0)})
+            }
         }
         
         func removeEvent(indexSet: IndexSet) {
@@ -78,7 +86,9 @@ extension EventBrowserContentView {
                 case .failure(let error):
                     print("Failed to fetch event: \(error)")
                 case .success(let events):
-                    self.events = events
+                    DispatchQueue.main.async {
+                        self.events = events
+                    }
                     break
                 }
             }
@@ -91,7 +101,9 @@ extension EventBrowserContentView {
                 case .failure(let error):
                     print("Failed to fetch event: \(error)")
                 case .success(let categories):
-                    self.categories = categories
+                    DispatchQueue.main.async {
+                        self.categories = categories
+                    }
                     break
                 }
             }

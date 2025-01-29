@@ -9,15 +9,32 @@ import Foundation
 import SwiftData
 
 @available(iOS 17, *)
-@Model
-public final class EventCategory {
-    @Relationship(deleteRule: .cascade, inverse: \EventModel.category)
-    public var events: [EventModel]?
-
-    @Attribute(.unique)
-    public var category: String
+public final class EventCategory: Hashable {
+    public static func == (lhs: EventCategory, rhs: EventCategory) -> Bool {
+        return lhs.category == rhs.category
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(category)
+    }
+    
+    public let category: String
     
     public init(category: String) {
+        self.category = category
+    }
+}
+
+@available(iOS 17, *)
+@Model
+final class EventSDCategory {
+    @Relationship(deleteRule: .cascade, inverse: \EventSDModel.category)
+    var events: [EventSDModel]?
+
+    @Attribute(.unique)
+    private(set) var category: String
+    
+    init(category: String) {
         self.category = category
     }
 }

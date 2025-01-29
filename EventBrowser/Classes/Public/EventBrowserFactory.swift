@@ -44,11 +44,11 @@ public final class EventBrowserFactory {
         }
     }
     
-    public func query(searchText: String, selectedCategories: Set<String>) async -> Result<[EventModel], Error> {
-        return await eventManager.query(searchText: searchText, selectedCategories: selectedCategories)
+    public func query(searchText: String, selectedCategories: Set<EventCategory>) async -> Result<[EventModel], Error> {
+        return await eventManager.query(searchText: searchText, selectedCategories: Set(selectedCategories.compactMap { $0.category }))
     }
     
-    public func getAllCategories() async -> Result<[String], Error> {
+    public func getAllCategories() async -> Result<[EventCategory], Error> {
         return await eventManager.getCategories()
     }
     

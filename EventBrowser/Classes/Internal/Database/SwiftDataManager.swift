@@ -18,7 +18,8 @@ class SwiftDataManager {
         
         modelContainer = {
             let schema = Schema([
-                EventModel.self,
+                EventSDModel.self,
+                EventSDCategory.self
             ])
             
             print(URL.documentsDirectory)

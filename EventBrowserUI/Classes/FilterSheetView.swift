@@ -15,7 +15,7 @@ public struct FilterSheetView: View {
     @Environment(\.dismiss)
     private var dismiss
     
-    @State private var selected = Set<String>()
+    @State private var selected = Set<EventCategory>()
 
     public var body: some View {
         NavigationView {
@@ -24,7 +24,7 @@ public struct FilterSheetView: View {
                 SearchBarView(searchText: $searchText).padding(.horizontal)
                 List(filteredCategories, id: \.self) { category in
                     HStack {
-                        Text(category)
+                        Text(category.category)
                         Spacer()
                         if selected.contains(category) {
                             Image(systemName: "checkmark")
@@ -68,11 +68,11 @@ public struct FilterSheetView: View {
     }
     
     // Computed property to filter categories based on searchText
-    private var filteredCategories: [String] {
+    private var filteredCategories: [EventCategory] {
         if searchText.isEmpty {
             return viewModel.categories
         } else {
-            return viewModel.categories.filter { $0.localizedCaseInsensitiveContains(searchText) }
+            return viewModel.categories.filter { $0.category.localizedCaseInsensitiveContains(searchText) }
         }
     }
 }

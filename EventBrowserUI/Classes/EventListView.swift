@@ -11,17 +11,17 @@ import SwiftData
 
 @available(iOS 17, *)
 public struct EventListView: View {
-    private let events: [EventModel]
+    public let viewModel: EventBrowserContentView.ViewModel
     private let onDeleteIndex: (IndexSet) -> Void?
     
-    public init(events: [EventModel], onDeleteIndex: @escaping (IndexSet) -> Void) {
-        self.events = events
+    public init(viewModel: EventBrowserContentView.ViewModel, onDeleteIndex: @escaping (IndexSet) -> Void) {
+        self.viewModel = viewModel
         self.onDeleteIndex = onDeleteIndex
     }
 
     public var body: some View {
         List {
-            ForEach(events) { event in
+            ForEach(viewModel.events) { event in
                 NavigationLink {
                     if let eventDataJsonString = event.eventDataJsonString,
                        let dictionary = jsonStringToDictionary(eventDataJsonString) {
@@ -29,7 +29,7 @@ public struct EventListView: View {
                         Spacer()
                         Text(event.eventName)
                             .font(.headline)
-                        Text(event.category.category)
+                        Text(event.category)
                             .font(.subheadline)
                         Text(event.timestamp.formatted(Date.FormatStyle().day().month().hour().minute().second().secondFraction(.fractional(3))))
                             .font(.subheadline)
@@ -46,7 +46,7 @@ public struct EventListView: View {
                     VStack(alignment: .leading) {
                         Text(event.eventName)
                             .font(.headline)
-                        Text(event.category.category)
+                        Text(event.category)
                             .font(.subheadline)
                         Text(event.timestamp.formatted(Date.FormatStyle().day().month().hour().minute().second().secondFraction(.fractional(3))))
                             .font(.subheadline)
@@ -59,7 +59,7 @@ public struct EventListView: View {
         }
         .listStyle(.plain)
         .overlay {
-            if events.isEmpty {
+            if viewModel.events.isEmpty {
                 ContentUnavailableView.search
             }
         }

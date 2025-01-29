@@ -36,7 +36,7 @@ public struct EventBrowserContentView: View {
             }
             .padding(.horizontal)
             
-            EventListView(events: viewModel.events, onDeleteIndex: { indexSet in
+            EventListView(viewModel: viewModel, onDeleteIndex: { indexSet in
                 viewModel.removeEvent(indexSet: indexSet)
             })
                 .toolbar {
@@ -68,5 +68,5 @@ public struct EventBrowserContentView: View {
 @available(iOS 17, *)
 #Preview {
     EventBrowserContentView(eventBrowserFactory: EventBrowserFactory(name: "Test"))
-        .modelContainer(for: EventModel.self, inMemory: true)
+        .modelContainer(for: EventSDModel.self, inMemory: true)
 }

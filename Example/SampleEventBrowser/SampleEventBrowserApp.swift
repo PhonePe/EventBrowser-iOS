@@ -14,12 +14,12 @@ import EventBrowser
 struct SampleEventBrowserApp: App {
     
     let eventBrowserFactory: EventBrowserFactory
-    let dashEventBrowserFactory: EventBrowserFactory
+//    let dashEventBrowserFactory: EventBrowserFactory
     private var timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
 
     init() {
         eventBrowserFactory = EventBrowserFactory(name: "FoxtrotEventBrowser")
-        dashEventBrowserFactory = EventBrowserFactory(name: "DashEventBrowser")
+//        dashEventBrowserFactory = EventBrowserFactory(name: "DashEventBrowser")
     }
     
     var body: some Scene {
@@ -30,7 +30,7 @@ struct SampleEventBrowserApp: App {
                     .navigationBarTitleDisplayMode(.inline)
             }
             .onReceive(timer) { _ in
-//                addTestEvent(instance: eventBrowserFactory)
+                addTestEvent(instance: eventBrowserFactory)
 //                addTestEvent(instance: dashEventBrowserFactory)
             }
         }
